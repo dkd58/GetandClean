@@ -1,1 +1,0 @@
-## Some notes on the runanalysis program
