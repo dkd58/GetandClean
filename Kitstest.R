@@ -2,7 +2,11 @@
 library(dplyr)
 setwd("~/Dropbox/Courses/Data Science/Getting and Cleaning Data")
 fileURL <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
+<<<<<<< HEAD
 # Local data file
+=======
+# Local data file 
+>>>>>>> 328abbae1edb9cf733b5b5472a5e9b05af8a5290
 dataFileZIP <- "./getdata-projectfiles-UCI-HAR-Dataset.zip"
 
 # Directory
