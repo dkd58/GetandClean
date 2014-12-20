@@ -1,7 +1,8 @@
 setwd("~/Dropbox/Courses/Data Science/Getting and Cleaning Data")
-
-dataFileZIP <- "./getdata-projectfiles-UCI-HAR-Dataset.zip"
-unzip(dataFileZIP)
+fileURL <- 'http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
+temp <- tempfile()
+download.file(fileURL,temp, mode="wb")
+unzip(temp)
 
 # Directory
 dirFile <- "./UCI HAR Dataset"
