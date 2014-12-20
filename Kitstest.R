@@ -1,34 +1,18 @@
-# Load required libraries.
-library(dplyr)
 setwd("~/Dropbox/Courses/Data Science/Getting and Cleaning Data")
-fileURL <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
-<<<<<<< HEAD
-# Local data file
-=======
-# Local data file 
->>>>>>> 328abbae1edb9cf733b5b5472a5e9b05af8a5290
+
 dataFileZIP <- "./getdata-projectfiles-UCI-HAR-Dataset.zip"
+unzip(dataFileZIP)
 
 # Directory
 dirFile <- "./UCI HAR Dataset"
 
-# Directory and filename (txt or csv) of the clean/tidy data:
+# Directory and filename of the tidy data:
 tidyDataFile <- "./tidy-UCI-HAR-dataset.txt"
-# tidyDataFileAVG <- "./tidy-UCI-HAR-dataset-AVG.csv"
+
 # Directory and filename (.txt) of the clean/tidy data
 tidyDataFileAVGtxt <- "./tidy-UCI-HAR-dataset-AVG.txt"
 
-# Download the dataset (. ZIP), which does not exist
-if (file.exists(dataFileZIP) == FALSE) {
-  download.file(fileURL, destfile = dataFileZIP)
-}
-
-# Uncompress data file
-if (file.exists(dirFile) == FALSE) {
-  unzip(dataFileZIP)
-}
-
-## 1. Merges the training and the test sets to create one data set:
+## 1. Merge the training and the test sets to create one data set:
 x_train <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE)
 x_test <- read.table("./UCI HAR Dataset/test/X_test.txt", header = FALSE)
 y_train <- read.table("./UCI HAR Dataset/train/y_train.txt", header = FALSE)
@@ -36,33 +20,32 @@ y_test <- read.table("./UCI HAR Dataset/test/y_test.txt", header = FALSE)
 subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt", header = FALSE)
 subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt", header = FALSE)
 
-# Combines data table (train vs test) by rows
+# Combine the training and test data sets by rows
 x <- rbind(x_train, x_test)
 y <- rbind(y_train, y_test)
 s <- rbind(subject_train, subject_test)
 
 # 2. Extracts only the measurements on the mean and standard deviation for each measurement:
-# Read features labels
+# Load the features set and add menaingful column names
 features <- read.table("./UCI HAR Dataset/features.txt")
-# Friendly names to features column
 names(features) <- c('feat_id', 'feat_name')
-# Search for matches to argument mean or standard deviation (sd)  within each element of character vector
+
+# Search for matches to 'mean' or 'standard deviation' (sd)  within each element of character vector
 index_features <- grep("-mean\\(\\)|-std\\(\\)", features$feat_name) 
 x <- x[, index_features] 
+
 # Tidy up the column headings after replacing, use the useful gsub function
 names(x) <- gsub("\\(|\\)", "", (features[index_features, 'feat_name']))
 
-## 3. Uses descriptive activity names to name the activities in the data set:
-## 4. Appropriately labels the data set with descriptive activity names:
-# Read activity labels
+# 3. Uses descriptive activity names to name the activities in the data set:
 activities <- read.table("./UCI HAR Dataset/activity_labels.txt")
-# Friendly names to activities column
+# 4. Appropriately labels the data set with descriptive activity names:
 names(activities) <- c('act_id', 'act_name')
 # replace factors with the activity name
 y[, 1] = activities[y[, 1], 2]
-
 names(y) <- "Activity"
 names(s) <- "Subject"
 
 # Combines data table by columns
 tidyDataSet <- cbind(s, y, x)
+write.csv(tidyDataSet, "tidyDataSet.csv")
