@@ -50,3 +50,4 @@ names(s) <- "Subject"
 # Combines data table by columns
 tidyDataSet <- cbind(s, y, x)
 write.csv(tidyDataSet, "tidyDataSet.csv")
+write.table(tidyDataSet, "tidyDataSet.txt", col.names=FALSE)
