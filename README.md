@@ -1,7 +1,7 @@
 
 ##DESCRIPTION
 
-This repository, titled "GetandClean", contains information, data and code for the "Getting and Cleaning Data" course from Coursera, specifcally around the Course Project (althought here aresome other course materials contained in this repo. 
+This repository, titled "GetandClean", contains information, data and code for the "Getting and Cleaning Data" course from Coursera, specifcally around the Course Project (although there aresome other course materials contained in this repo. 
 
 The main code is contained in the script named **"run_analysis.R"**. This code witll set the working directory (which you probably want to modify to suit your own directory set up), download from the reference URL the zip file. It will then proceed to process that data to meet the aims of the project, which is to "tidy up"" the data.
 
