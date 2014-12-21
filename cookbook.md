@@ -14,7 +14,12 @@ For each record in the dataset it is provided:
 * Its activity label. 
 * An identifier of the subject who carried out the experiment.
 
-The data set "tidy.RData" is the result of collecting, working with and cleaning an existing data set. It is an R "data.frame" that contains 180 obs. of 86 variables (excluding Subject numbers and Activity labels). The variables in this data set, are calculated mean values per Subsject (experiment volunteers) and Activity, that derive from mean and standard deviation values of features measured from an accelerometer and gyroscope as presented in an experimental data set (UCI HAR Dataset).
+The R program "run_analysis.R"" derives mean and standard deviation values of features via the following steps:
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names. 
+5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 Specifically, the source values are mean and standard deviation values (as calculated using the functions mean(), std()) of the following features:
 
@@ -40,7 +45,3 @@ Specifically, the source values are mean and standard deviation values (as calcu
 * tBodyAccJerkMean 
 * tBodyGyroMean 
 * tBodyGyroJerkMean
-
-For details about the original features' data set (description and raw 3-axial signals), look at the respective metadata file (UCI HAR Dataset/features_info.txt and REAMDE.txt).
-
-The complete list of calculated mean values for the variables in question, is available in 'features.tidy.RData'
