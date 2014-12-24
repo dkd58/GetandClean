@@ -3,11 +3,8 @@ file.url <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv'
 file.dest <- 'ACSdata.csv'
 download.file(file.url, file.dest, method='curl')
 ACS <- read.csv(file.dest)
-
 # extract names
 names <- names(ACS)
-
-# string split
 strsplit(names, 'wgtp')[123]
 
 Q2
@@ -38,7 +35,22 @@ download.file(file.url, file.dest, method='wget')
 edu <- read.csv(file.dest)
 # merge the datasets
 merged <- merge(GDP, edu, by.x = 'X', by.y = 'CountryCode')
-# extract the information
 fy.june <- grep('Fiscal year end: June', merged$Special.Notes)
 length(fy.june)
+Q5
+install.packages('quantmod')
+library(quantmod)
+amazonstockpricehist = getSymbols("AMZN",auto.assign=FALSE)
+# index
+sampleTimes = index(amazonstockpricehist) 
+# create logical for year 2012
+year2012 <- grepl('2012-*', sampleTimes)
+# count 2012 observations (i.e. true)
+table(year2012)
+# subset based on 2012
+sampleTimes2012 <- subset(sampleTimes, year2012)
+# convert to day of week
+day <- format(sampleTimes2012, '%A')
+# count each day
+table(day)
 
